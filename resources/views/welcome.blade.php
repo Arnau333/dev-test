@@ -30,7 +30,10 @@ como parámetros la fecha de entrada, la fecha de salida y el número de huéspe
 
 <div class="row">
 
-
+<div class="alert alert-warning alert-dismissible fade show" role="alert" id="alerterror" style="display:none;">
+  <strong>¡Error!</strong> Tienes que rellenar todos los campos.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
 <div class="col-6">
 <form action="getsomething" method="POST" id="mainform"> 
     

@@ -2,18 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\hotel;
+
 use Illuminate\Http\Request;
 
 class mainController extends Controller
 {
-    public function index ()
-    {
-        // return view('welcome');
-
-        echo 'kljsdahflksadhflkjsadhlkjhsakldfjh';
-    }
-
-    public function getsomething(Request $request){
+    public function index(Request $request){
 
         $responsehtml="";
 
@@ -27,35 +22,45 @@ class mainController extends Controller
         $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
         $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
 
+        $data = new hotel;
+        $objalldata = $data->getAll();
 
-  $responsehtml .= '<table class="table table-hover">';
-  $responsehtml .= '<thead>';
-  $responsehtml .= '<tr>';
-  $responsehtml .= '<th scope="col">Nombre de la habitación:</th>';
-  $responsehtml .= '<th scope="col">Régimen alimenticio:</th>';
-  $responsehtml .= '<th scope="col">Condiciones de cancelación</th>';
-  $responsehtml .= '<th scope="col">Tarifa:</th>';
-  $responsehtml .= '</tr>';
-  $responsehtml .= '</thead>';
-  $responsehtml .= '<tbody>';
-  $responsehtml .= '<tr>';
-  $responsehtml .= '<td>Mark</td>';
-  $responsehtml .= '<td>Otto</td>';
-  $responsehtml .= '<td>@mdo</td>';
-  $responsehtml .= '</tr>';
-  $responsehtml .= '<tr>';
-  $responsehtml .= '<td>Jacob</td>';
-  $responsehtml .= '<td>Thornton</td>';
-  $responsehtml .= '<td>@fat</td>';
-  $responsehtml .= '</tr>';
-  $responsehtml .= '<tr>';
-  $responsehtml .= '<td colspan="2">Larry the Bird</td>';
-  $responsehtml .= '<td>@twitter</td>';
-  $responsehtml .= '</tr>';
-  $responsehtml .= '</tbody>';
-  $responsehtml .= '</table>';
+        $responsehtml .= '<table class="table table-hover">';
+        $responsehtml .= '<thead>';
+        $responsehtml .= '<tr>';
+        $responsehtml .= '<th scope="col">Nombre de la habitación:</th>';
+        $responsehtml .= '<th scope="col">Régimen alimenticio:</th>';
+        $responsehtml .= '<th scope="col">Condiciones de cancelación</th>';
+        $responsehtml .= '<th scope="col">Tarifa:</th>';
+        $responsehtml .= '</tr>';
+        $responsehtml .= '</thead>';
+        $responsehtml .= '<tbody>';
 
-        echo $responsehtml;
+  
+
+        foreach ($objalldata as $obj) 
+
+        {
+
+        
+          
+          $responsehtml .= '<tr>';
+          $responsehtml .= '<td> '.$obj->name.' </td>';
+          $responsehtml .= '<td>'.$obj->regimen.'</td>';
+          $responsehtml .= '<td>'.$obj->condicionescancelacion.'</td>';
+          $responsehtml .= '<td>'.$obj->tarifa.'</td>';
+
+          $responsehtml .= '</tr>';
+
+
+        }
+
+  
+        $responsehtml .= '</tbody>';
+        $responsehtml .= '</table>';
+
+
+         echo $responsehtml;
                
     }
 

@@ -17,7 +17,7 @@ class Hotel extends Migration
             $table->id();
             $table->string('name');
             $table->string('regimen');
-            $table->string('condiciones-cancelacion');
+            $table->string('condicionescancelacion');
             $table->string('tarifa');
             $table->timestamps();
         });

@@ -17,15 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test',function () {
-    return 'Hello World';
-});
-
- 
-Route::get('/user', [mainController::class, 'index']);
-
-
-  
-
-  Route::post('/getsomething', [mainController::class, 'getsomething']);
-
+Route::post('/getsomething', [mainController::class, 'index']);
