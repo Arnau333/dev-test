@@ -5,7 +5,8 @@ e.preventDefault();
 if ($(`#entrada`).val() == "" || $(`#salida`).val() == "" || $(`#huespedes`).val() == ""){
   $(`#alerterror`).show();
 } else{
-let entrada = $(`#entrada`).val();
+    if ($("#resultado").html()!=''){$("#resultado").hide('slower');}
+    let entrada = $(`#entrada`).val();
       entrada=entrada.replace("-", "");
       entrada=entrada.replace("-", "");
     let salida = $(`#salida`).val();
@@ -23,10 +24,16 @@ let entrada = $(`#entrada`).val();
                       type: 'GET',
                       success: function(resultcall2){
                             let index = 0;
+                             $("#resultado").html('');
+                             $("#resultado").show('slower');                             
                             do {
-                              $("#resultado").html($("#resultado").html()+"<br><h2><b>"+resultcall2.RoomTypes[index]['Key']+"</h2></b> |Services: <p class='hotelservice'>"+JSON.stringify(resultcall2.RoomTypesInfo[index]));
+                              $("#resultado").html($("#resultado").html()+"<br><h2><b>"+resultcall2.RoomTypes[index]['Key']+":</h2></b>"+JSON.stringify(resultcall2.RoomTypesInfo[index]));
                               index++;
                             } while (resultcall2.RoomTypes[index]);               
+                      },
+                      error: function(resultcall2){
+                        $("#resultado").html('Error');
+
                       }
               });
             }
