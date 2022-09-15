@@ -22,13 +22,13 @@ let entrada = $(`#entrada`).val();
                       data: $('#mainform').serialize(),
                       type: 'GET',
                       success: function(resultcall2){
-                       let index = 0;
-                      do {
-                        $("#resultado").html($("#resultado").html()+"<br><h2><b>"+resultcall2.RoomTypes[index]['Key']+"</h2></b> |Services: <p class='hotelservice'>"+JSON.stringify(resultcall2.RoomTypesInfo[index]));
-                        index++;
-                      } while (resultcall2.RoomTypes[index]);               
+                            let index = 0;
+                            do {
+                              $("#resultado").html($("#resultado").html()+"<br><h2><b>"+resultcall2.RoomTypes[index]['Key']+"</h2></b> |Services: <p class='hotelservice'>"+JSON.stringify(resultcall2.RoomTypesInfo[index]));
+                              index++;
+                            } while (resultcall2.RoomTypes[index]);               
                       }
-                      });
+              });
             }
        });
   }
